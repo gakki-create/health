@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>project_parent</artifactId>
+        <groupId>com.myfactory</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.myfactory</groupId>
+    <artifactId>project_interface</artifactId>
+<!--创建health_interface，子工程，打包方式为jar，存放服务接口，用于dubbo在服务提供者和服务消费者中使用。-->
+
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <!--依赖于pojo实体类：方法返回值封装到实体类-->
+            <groupId>com.myfactory</groupId>
+            <artifactId>project_pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.myfactory</groupId>
+            <artifactId>project_dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>

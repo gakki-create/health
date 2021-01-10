@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myfactory.health.dao.OrderSettingDao">
+
+    <insert id="add" parameterType="OrderSetting">
+
+      Insert into t_ordersetting (orderDate,number,reservations)
+
+      values (#{orderDate},#{number}, #{reservations})
+
+    </insert>
+
+    <select id="findByOrderDate" parameterType="date" resultType="OrderSetting">
+
+    select * from t_ordersetting where orderDate = #{orderDate,jdbcType=DATE}
+
+    </select>
+
+    <update id="update" parameterType="OrderSetting">
+
+    update t_ordersetting set number = #{number}
+
+    where orderDate = #{orderDate,jdbcType=DATE}
+
+    </update>
+
+
+
+    <select id="getOrderSettingByMonth" parameterType="String" resultType="map">
+
+         select CAST(DATE_FORMAT(orderdate,'%d') AS SIGNED) date,number,reservations
+
+          From t_ordersetting where orderDate like #{month}
+
+    </select>
+
+
+
+</mapper>

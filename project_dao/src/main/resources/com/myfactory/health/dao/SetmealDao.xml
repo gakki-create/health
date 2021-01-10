@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myfactory.health.dao.SetmealDao">
+
+    <insert id="add" parameterType="setmeal">
+        /*后续要用到setmeal的ID，要查询setmeal的自增长id*/
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        /*selectKey 会将 SELECT LASTINSERTID()的结果放入到传入的model的主键里面，
+        keyProperty 对应的model中的主键的属性名，
+        这里是 Goods 中的id，因为它跟数据库的主键对应order AFTER 表示 SELECT LASTINSERTID() 在insert执行之后执行,
+        多用与自增主键，BEFORE表示SELECT LASTINSERTID() 在insert执行之前执行，
+        这样的话就拿不到主键了，这种适合那种主键不是自增的类型resultType 主键类型 */
+
+        insert into t_setmeal (name,code,helpCode,sex,age,price,remark,attention,img)
+
+        values (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img})
+
+    </insert>
+
+    <insert id="addsetmealcheckgroupId" parameterType="int">
+
+        insert into t_setmeal_checkgroup (setmeal_id, checkgroup_id)
+        values (#{id},#{checkgroupId})
+
+    </insert>
+
+
+    <select id="findPage" parameterType="string" resultType="setmeal">
+
+        select * from t_setmeal
+
+        <if test="value != null and value.length > 0">
+            where code like #{queryString} or name like #{queryString} or helpCode like #{queryString}
+        </if>
+
+    </select>
+
+    <update id="update" parameterType="setmeal">
+        update t_setmeal
+      set
+        name=#{name},
+        code=#{code},
+        helpCode=#{helpCode},
+        sex=#{sex},
+        age=#{age},
+        price=#{price},
+        remark=#{remark},
+        attention=#{attention},
+        img=#{img}
+    where id=#{id}
+    </update>
+
+    <delete id="deleteSetmealCheckgroup" parameterType="int">
+
+        delete from t_setmeal_checkgroup where setmeal_id = #{setmealId}
+
+    </delete>
+
+    <select id="findById" parameterType="int" resultType="setmeal">
+
+        select * from t_setmeal where id=#{id}
+
+    </select>
+
+
+    <select id="findCheckgroupIdsBySetmealId" parameterType="int" resultType="int">
+
+        select checkgroup_id from t_setmeal_checkgroup where setmeal_id=#{id}
+
+    </select>
+
+
+
+    <select id="findByIdOrder" parameterType="int" resultType="int">
+
+        select count(1) from t_order where setmeal_id=#{id}
+
+    </select>
+
+    <delete id="deleteSetmeal" parameterType="int">
+
+        delete from t_setmeal where id = #{id}
+
+    </delete>
+
+    <select id="findAll" resultType="Setmeal">
+
+        select * from t_setmeal
+
+    </select>
+
+</mapper>
