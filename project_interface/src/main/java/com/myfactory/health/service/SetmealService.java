@@ -23,7 +23,7 @@ public interface SetmealService {
     void delete(int id) throws HealthException;
     //查询所有套餐信息
     List<Setmeal> findAll();
-
+    //查询单个套餐下的信息
     Setmeal findDetailById(int id);
 
 }

@@ -14,14 +14,14 @@ import com.aliyuncs.profile.IClientProfile;
  */
 public class SMSUtils {
 	public static final String VALIDATE_CODE = "SMS_189616640";//发送短信验证码模板编码  模版CODE
-	public static final String ORDER_NOTICE = "SMS_159771588";//体检预约成功通知
-	private static final String SIGN_NAEM = "黑马程序员";// 短信的签名
+	public static final String ORDER_NOTICE = "SMS_209196149";//体检预约成功通知
+	private static final String SIGN_NAEM = "舔狗911号";// 短信的签名
 	private static final String PARAMETER_NAME="code";
-	private static final String ACCESS_KEY="LTAI4GEKPyNCoPH43kZH8hZN"; //你的AccessKey ID
-	private static final String SECRET_KEY="GTx8cCTLvE32uLYJCuabaSOY3bz9rr"; //你的AccessKey Secret
+	private static final String ACCESS_KEY="LTAI4FxyzabaHaY8gbRXMsin"; //你的AccessKey ID
+	private static final String SECRET_KEY="GDh1Bs67E3Ju2UgDqVIcyH33ePZFx5"; //你的AccessKey Secret
 
 	public static void main(String[] args) throws ClientException {
-		SMSUtils.sendShortMessage(VALIDATE_CODE,"13652431027","666666");
+		SMSUtils.sendShortMessage(VALIDATE_CODE,"13873249987","666666");
 	}
 
 	/**
@@ -39,8 +39,8 @@ public class SMSUtils {
 		final String product = "Dysmsapi";// 短信API产品名称（短信产品名固定，无需修改）
 		final String domain = "dysmsapi.aliyuncs.com";// 短信API产品域名（接口地址固定，无需修改）
 		// 替换成你的AK
-		final String accessKeyId = "LTAIak3CfAehK7cE";// 你的accessKeyId,参考本文档步骤2
-		final String accessKeySecret = "zsykwhTIFa48f8fFdU06GOKjHWHel4";// 你的accessKeySecret，参考本文档步骤2
+		final String accessKeyId = "LTAI4FxyzabaHaY8gbRXMsin";// 你的accessKeyId,参考本文档步骤2
+		final String accessKeySecret = "GDh1Bs67E3Ju2UgDqVIcyH33ePZFx5";// 你的accessKeySecret，参考本文档步骤2
 		// 初始化ascClient,暂时不支持多region（请勿修改）
 		IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", ACCESS_KEY, SECRET_KEY);
 		DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);

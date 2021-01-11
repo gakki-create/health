@@ -94,9 +94,36 @@
 
     </select>
 
-    <!--多表查询-->
-    <select id="findDetailById" parameterType="int" resultType="Setmeal">
-         select * from t_setmeal
+    <!--多表查询：左外连接查询，以套餐信息为主体，查询其检查组、检查项的信息-->
+    <select id="findDetailById" parameterType="int" resultMap="setmealDetailResultMap">
+        select s.id,s.name,s.age,s.sex,s.remark,s.img,
+           sc.checkgroup_id,g.name checkgroup_name,g.remark checkgroup_remark,
+           cc.checkitem_id,ci.name checkitem_name
+         from t_setmeal s
+         left  join t_setmeal_checkgroup sc on s.id = sc.setmeal_id
+         left  join t_checkgroup g on sc.checkgroup_id =g.id
+         left  join t_checkgroup_checkitem cc on cc.checkgroup_id=g.id
+         left  join t_checkitem ci on cc.checkitem_id=ci.id
+         where s.id=#{id}
     </select>
 
+    <!--经典1对多-->
+    <resultMap id="setmealDetailResultMap" type="setmeal" autoMapping="true">
+        <id property="id" column="id"></id>
+
+        <!-- ofType 指定多方的类型，必须的 -->
+        <collection property="checkGroups"  ofType="checkgroup">
+
+            <id column="checkgroup_id" property="id"></id>
+            <result property="name" column="checkgroup_name"/>
+            <result property="remark" column="checkgroup_remark"/>
+
+            <collection property="checkItems" ofType="checkitem">
+                <id property="id" column="checkitem_id"/>
+                <result property="name" column="checkitem_name"/>
+            </collection>
+
+        </collection>
+
+    </resultMap>
 </mapper>

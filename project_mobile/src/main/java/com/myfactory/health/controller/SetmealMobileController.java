@@ -41,7 +41,7 @@ public class SetmealMobileController {
     }
 
     //查询某个套餐详情
-    @GetMapping("/getSetmeal")
+    @GetMapping("/findDetailById")
     public Result findDetailById(int id){
 
         Setmeal setmeal=setmealService.findDetailById(id);

@@ -132,4 +132,5 @@ public class SetmealServiceImpl implements SetmealService {
     public Setmeal findDetailById(int id) {
         return setmealDao.findDetailById(id);
     }
+
 }
