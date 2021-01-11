@@ -33,4 +33,7 @@ public interface SetmealDao {
     void deleteSetmeal(int id);
     //查询套餐信息
     List<Setmeal> findAll();
+    //根据id查询套餐详情
+    Setmeal findDetailById(int id);
+
 }

@@ -24,4 +24,6 @@ public interface SetmealService {
     //查询所有套餐信息
     List<Setmeal> findAll();
 
+    Setmeal findDetailById(int id);
+
 }

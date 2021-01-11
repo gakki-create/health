@@ -40,5 +40,19 @@ public class SetmealMobileController {
       return new Result(true, MessageConstant.GET_SETMEAL_LIST_SUCCESS,setmealList);
     }
 
+    //查询某个套餐详情
+    @GetMapping("/getSetmeal")
+    public Result findDetailById(int id){
+
+        Setmeal setmeal=setmealService.findDetailById(id);
+
+        //取出Img的值，拼接成图片的全路径,使用七牛的工具类来拼接
+
+        setmeal.setImg(setmeal.getImg()+QiNiuUtils.DOMAIN);
+
+        return new Result(true, MessageConstant.GET_SETMEAL_LIST_SUCCESS,setmeal);
+    }
+
+
 
 }

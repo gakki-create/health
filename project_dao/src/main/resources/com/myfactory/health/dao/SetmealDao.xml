@@ -94,4 +94,9 @@
 
     </select>
 
+    <!--多表查询-->
+    <select id="findDetailById" parameterType="int" resultType="Setmeal">
+         select * from t_setmeal
+    </select>
+
 </mapper>
