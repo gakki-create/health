@@ -19,4 +19,6 @@ public interface OrderSettingDao {
 
     //查询
     List<Map<String, Integer>>  getOrderSettingByMonth(String month);
+
+    int editReservationsByOrderDate(OrderSetting orderSetting);
 }

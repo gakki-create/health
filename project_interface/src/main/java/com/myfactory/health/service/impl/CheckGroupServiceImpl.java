@@ -26,7 +26,6 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     * @return: void
     * @author Gakki
     **/
-
     @Autowired
     private CheckGroupServiceDao checkGroupServiceDao;
 

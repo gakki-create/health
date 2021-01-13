@@ -51,8 +51,7 @@ public class SetmealMobileController {
         setmeal.setImg(setmeal.getImg()+QiNiuUtils.DOMAIN);
 
         return new Result(true, MessageConstant.GET_SETMEAL_LIST_SUCCESS,setmeal);
+
     }
-
-
 
 }

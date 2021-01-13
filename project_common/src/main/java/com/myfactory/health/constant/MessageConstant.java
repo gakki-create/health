@@ -68,4 +68,5 @@ public interface MessageConstant {
     static final String CHECKGROUP_IN_USE ="该检查项组被套餐使用过，不能删除";
     static final String EDIT_SETMEAL_SUCCESS ="套餐更新成功！" ;
     static final String DELEDE_SETMEAL_SUCCESS ="删除套餐成功！" ;
+    static final String SENT_VALIDATECODE = "验证码已经存在，请勿重复发送";
 }

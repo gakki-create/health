@@ -66,8 +66,15 @@
                 orderInfo:{}
             },
             mounted(){
-                axios.post("/order/findById.do?id=" + id).then((response) => {
-                    this.orderInfo = response.data.data;
+                axios.get("/order/findById.do?id=" + id).then((res) => {
+                    if(res.data.flag){
+                        var orderInfo = res.data.data;
+                        // 去掉时分秒
+                        orderInfo.orderDate=orderInfo.orderDate.substring(0,10);
+                        this.orderInfo = orderInfo;
+                    }else{
+                        alert(res.data.message);
+                    }
                 });
             }
         });
