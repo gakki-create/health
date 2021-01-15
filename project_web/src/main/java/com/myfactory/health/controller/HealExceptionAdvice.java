@@ -4,8 +4,12 @@ import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.myfactory.health.entity.Result;
 import com.myfactory.health.exception.HealthException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.nio.file.AccessDeniedException;
 
 /**
  * @author Gakki
@@ -57,6 +61,52 @@ public class HealExceptionAdvice {
     }
 
 
+    private Result handleUserPassword(){
+        return new Result(false, "用户名或密码错误");
+    }
+    /**
+    *
+    * @param: he
+    * @return: com.myfactory.health.entity.Result
+    * @author Gakki
+     * 密码错误
+    **/
+    @ExceptionHandler(BadCredentialsException.class)
+    public Result handBadCredentialsException(BadCredentialsException he){
+        //打印错误日志
+        log.error("发生异常",he);
+
+        return handleUserPassword();
+    }
+    /**
+    *
+    * @param: he
+    * @return: com.myfactory.health.entity.Result
+    * @author Gakki
+     *
+     * 用户名不存在
+    **/
+
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    public Result handInternalAuthenticationServiceException(InternalAuthenticationServiceException he){
+        //打印错误日志
+        log.error("发生异常",he);
+
+        return handleUserPassword();
+    }
+
+    /**
+    *
+    * @param: he
+    * @return: com.myfactory.health.entity.Result
+    * @author Gakki
+     * 没有权限访问
+    **/
+    @ExceptionHandler(AccessDeniedException.class)
+    public Result handAccessDeniedException(AccessDeniedException he){
+
+        return new Result(false, "没有权限");
+    }
 
 
 }

@@ -8,6 +8,7 @@ import com.myfactory.health.entity.Result;
 import com.myfactory.health.pojo.CheckItem;
 import com.myfactory.health.service.CheckItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class CheckItemController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('CHECKITEM_ADD')")
     public Result add(@RequestBody CheckItem checkItem){
         checkItemService.add(checkItem);
         //封装到result中去,并返回给前端
@@ -50,7 +52,7 @@ public class CheckItemController {
     * 3.返回结果（进行封装）
     * */
     @PostMapping("/findPage")
-
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result findPage(@RequestBody QueryPageBean queryPageBean){
         //调用service中的方法，查询当前页的结果集，封装到PageResult
         PageResult<CheckItem> pageResultList=checkItemService.findPage(queryPageBean);
@@ -85,8 +87,6 @@ public class CheckItemController {
         //封装到result中去,并返回给前端
         return new Result(true, MessageConstant.EDIT_CHECKITEM_SUCCESS);
     }
-
-
 
 
 }
