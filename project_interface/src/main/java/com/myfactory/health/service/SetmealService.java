@@ -7,6 +7,7 @@ import com.myfactory.health.pojo.CheckGroup;
 import com.myfactory.health.pojo.Setmeal;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SetmealService {
     //添加套餐
@@ -25,5 +26,7 @@ public interface SetmealService {
     List<Setmeal> findAll();
     //查询单个套餐下的信息
     Setmeal findDetailById(int id);
+    //查询套餐名称集合
+    List<Map<String, Object>> findSetmealCount();
 
 }

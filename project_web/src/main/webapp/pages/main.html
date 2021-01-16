@@ -22,6 +22,7 @@
             padding: 0;
         }
     </style>
+    <script src="../plugins/echarts.js"></script>
 </head>
 <body class="hold-transition skin-purple sidebar-mini">
 <div id="app">
@@ -36,7 +37,7 @@
                     <span class="help"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>帮助</span>
                     <el-dropdown class="avatar-container right-menu-item" trigger="click">
                         <div class="avatar-wrapper">
-                            <img src="../img/user2-160x160.jpg" class="user-avatar">
+                            <img src="../img/Joker.jpg" class="user-avatar">
                             {{loginUsername}}
                         </div>
                         <el-dropdown-menu slot="dropdown">
@@ -192,6 +193,15 @@
                 }
             ]
         },
+        created() {
+            axios.get("/report/getBusinessReportData.do").then((res)=>{
+                if(res.data.flag){
+                    this.reportData = res.data.data;
+                }else{
+                    this.$message.error(res.data.message);
+                }
+            });
+        },
         mounted(){
             // 获取登陆用户名
             axios.get('/user/getUsername.do').then(res => {
@@ -202,7 +212,9 @@
                 }
             })
         }
-    });
+    })
+    ;
+
     $(function() {
         var wd = 200;
         $(".el-main").css('width', $('body').width() - wd + 'px');

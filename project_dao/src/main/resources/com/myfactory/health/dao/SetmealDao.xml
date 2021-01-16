@@ -126,4 +126,11 @@
         </collection>
 
     </resultMap>
+
+    <select id="findSetmealCount"  resultType="map">
+        select s.name,count(1) value from
+        t_order o,t_setmeal s where s.id = o.setmeal_id
+        group by s.name
+    </select>
+
 </mapper>

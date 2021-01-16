@@ -3,6 +3,7 @@ package com.myfactory.health.dao;
 
 
 import com.myfactory.health.pojo.Order;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -15,5 +16,7 @@ public interface OrderDao {
     public Integer findOrderCountAfterDate(String date);
     public Integer findVisitsCountByDate(String date);
     public Integer findVisitsCountAfterDate(String date);
-    public List<Map> findHotSetmeal();
+    public List<Map<String,Object>> findHotSetmeal();
+
+    int findOrderCountBetweenDate(@Param("startDate")String startDate,@Param("endDate") String endDate);
 }

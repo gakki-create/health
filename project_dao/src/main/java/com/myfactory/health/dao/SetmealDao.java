@@ -6,6 +6,7 @@ import com.myfactory.health.pojo.Setmeal;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SetmealDao {
 
@@ -36,4 +37,5 @@ public interface SetmealDao {
     //根据id查询套餐详情
     Setmeal findDetailById(int id);
 
+    List<Map<String, Object>> findSetmealCount();
 }
